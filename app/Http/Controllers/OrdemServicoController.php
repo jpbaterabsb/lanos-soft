@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\OrdemServico;
+use App\Produto;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use PhpParser\Node\Expr\Cast\Object_;
 
 class OrdemServicoController extends Controller
 {
-    public $data;
+    public $data = array();
     public function index()
     {
         $data['OrdemServicos'] = OrdemServico::all();
@@ -17,8 +19,7 @@ class OrdemServicoController extends Controller
     }
     public function add()
    {
-
-        return view('OrdemServico/add',array(data => []));
+        return view('OrdemServico/add',array('data' =>  $this->data));
     }
     public function addPost()
     {
@@ -72,9 +73,4 @@ class OrdemServicoController extends Controller
 
     }
 
-    public function table(Request $request)
-    {
-        array_push($request['produtoObject'],$this->data);
-        return view('OrdemServico/add').with('a', $this->data);
-    }
 }

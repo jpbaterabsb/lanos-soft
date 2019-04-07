@@ -36,3 +36,11 @@ $(document).ready(function($){
     });
     $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
 });
+
+function mascaraValor(valor) {
+    valor = valor.toString().replace(/\D/g,"");
+    valor = valor.toString().replace(/(\d)(\d{8})$/,"$1.$2");
+    valor = valor.toString().replace(/(\d)(\d{5})$/,"$1.$2");
+    valor = valor.toString().replace(/(\d)(\d{2})$/,"$1,$2");
+    return valor
+}
